@@ -6,7 +6,7 @@ A modern, glassmorphism-styled personal portfolio website showcasing my skills, 
 
 ## 🌐 Live Preview
 
-Open `portfolio.html` in your browser or deploy via [GitHub Pages](https://pages.github.com/).
+🔗 **[https://portfolio-exns.onrender.com/](https://portfolio-exns.onrender.com/)**
 
 ## ✨ Features
 
