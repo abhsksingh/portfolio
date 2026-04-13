@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abhishek Kumar Singh – Portfolio</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-light: #a78bfa;
+            --accent: #06b6d4;
+            --accent2: #f472b6;
+            --bg1: #0f0c29;
+            --bg2: #302b63;
+            --bg3: #24243e;
+            --glass: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-hover: rgba(255, 255, 255, 0.13);
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --card-radius: 18px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 10s ease-in-out infinite alternate;
+        }
+
+        .orb1 {
+            width: 420px;
+            height: 420px;
+            background: var(--primary);
+            top: -100px;
+            left: -100px;
+            animation-duration: 12s;
+        }
+
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            bottom: 100px;
+            right: -80px;
+            animation-duration: 9s;
+        }
+
+        .orb3 {
+            width: 250px;
+            height: 250px;
+            background: var(--accent2);
+            top: 40%;
+            left: 30%;
+            animation-duration: 14s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0px) translateX(0px);
+            }
+
+            to {
+                transform: translateY(40px) translateX(20px);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 40px;
+            background: rgba(15, 12, 41, 0.6);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+        }
+
+        .hero-inner {
+            max-width: 720px;
+        }
+
+        .avatar-ring {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 50px;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            font-size: 13px;
+            color: var(--primary-light);
+            margin-bottom: 18px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(32px, 6vw, 58px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-light), var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(124, 58, 237, 0.55);
+        }
+
+        .btn-ghost {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-ghost:hover {
+            background: var(--glass-hover);
+            transform: translateY(-2px);
+        }
+
+        .section-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 14px;
+            font-size: clamp(22px, 4vw, 36px);
+            font-weight: 700;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 52px;
+            font-size: 15px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divider {
+            width: 56px;
+            height: 3px;
+            border-radius: 2px;
+            margin: 12px auto 40px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            backdrop-filter: blur(16px);
+            transition: all 0.3s;
+        }
+
+        .glass-card:hover {
+            background: var(--glass-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        #skills {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card {
+            padding: 28px 18px;
+            text-align: center;
+        }
+
+        .skill-icon {
+            font-size: 32px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .skill-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .skill-tag {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+        }
+
+        .skill-bar {
+            height: 3px;
+            border-radius: 2px;
+            margin-top: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            animation: fillBar 1.5s ease-out forwards;
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .proj-card {
+            padding: 26px;
+        }
+
+        .proj-lang {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            color: var(--primary-light);
+        }
+
+        .proj-lang.js {
+            background: rgba(250, 204, 21, 0.15);
+            border-color: rgba(250, 204, 21, 0.35);
+            color: #fde68a;
+        }
+
+        .proj-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .proj-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 20px;
+        }
+
+        .proj-tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: rgba(6, 182, 212, 0.12);
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            color: var(--accent);
+        }
+
+        .proj-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .proj-link {
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .proj-link-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+        }
+
+        .proj-link-primary:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .proj-link-ghost {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--muted);
+        }
+
+        .proj-link-ghost:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #about {
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 640px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-text p {
+            color: var(--muted);
+            line-height: 1.85;
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .about-visual {
+            padding: 32px;
+            text-align: center;
+        }
+
+        .tech-pill-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tech-pill {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: var(--text);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .contact-card {
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .contact-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .c-purple-i {
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .c-blue-i {
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .c-green-i {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .c-pink-i {
+            background: rgba(244, 114, 182, 0.15);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+        }
+
+        .contact-label {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .contact-value {
+            font-size: 13px;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 28px 24px;
+            border-top: 1px solid var(--glass-border);
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        footer span {
+            color: var(--primary-light);
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 12px 18px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <nav>
+        <div class="nav-logo">AKS</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-inner">
+            <div class="avatar-ring">A</div>
+            <div class="badge">✦ Open to Opportunities</div>
+            <h1><span class="gradient-text">Abhishek Kumar Singh</span></h1>
+            <p class="tagline">"Innovate. Implement. Inspire."</p>
+            <p class="hero-desc">
+                B.Tech CSE (4th Year) · Data Analyst · Prompt Engineer · Agentic AI Builder · Automation Expert ·
+                Infographic &amp; Data Designer
+            </p>
+            <div class="btn-row">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com/abhsksingh" target="_blank" class="btn btn-ghost">GitHub Profile</a>
+                <a href="mailto:singhabhishek6206@gmail.com" class="btn btn-ghost">Hire Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-wrap">
+            <h2 class="section-title gradient-text">About Me</h2>
+            <div class="divider"></div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I'm a final-year B.Tech Computer Science student with a deep passion for building intelligent
+                        systems. I work at the intersection of data, automation, and AI — turning complex problems into
+                        elegant, impactful solutions.</p>
+                    <p>From designing insightful dashboards and data visualizations to building agentic AI workflows
+                        with MCP integration, I bring both analytical rigor and creative vision to every project.</p>
+                    <p>My expertise spans the full modern AI stack — prompt engineering, RPA automation, data analytics,
+                        and cutting-edge agentic frameworks.</p>
+                    <div class="stat-row">
+                        <div class="stat-box">
+                            <div class="stat-num">4+</div>
+                            <div class="stat-label">GitHub Projects</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num">7+</div>
+                            <div class="stat-label">Core Skills</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num">4th</div>
+                            <div class="stat-label">Year B.Tech CSE</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card about-visual">
+                    <div class="tech-pill-wrap">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">SQL</span>
+                        <span class="tech-pill">Power BI</span>
+                        <span class="tech-pill">MS Excel</span>
+                        <span class="tech-pill">Jupyter</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">LangChain</span>
+                        <span class="tech-pill">MCP</span>
+                        <span class="tech-pill">RPA</span>
+                        <span class="tech-pill">Pandas</span>
+                        <span class="tech-pill">Scikit-learn</span>
+                        <span class="tech-pill">Claude API</span>
+                        <span class="tech-pill">OpenAI API</span>
+                        <span class="tech-pill">Figma</span>
+                        <span class="tech-pill">Canva</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-wrap">
+            <h2 class="section-title gradient-text">Core Expertise</h2>
+            <div class="divider"></div>
+            <p class="section-sub">A multidisciplinary skill set built for the modern AI-driven world.</p>
+            <div class="skills-grid">
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">📊</span>
+                    <div class="skill-name">Data Analytics</div>
+                    <div class="skill-tag">Python · SQL · Power BI · Excel</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:92%"></div>
+                    </div>
+                </div>
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">🧠</span>
+                    <div class="skill-name">Prompt Engineering</div>
+                    <div class="skill-tag">Claude · GPT · Chain-of-Thought</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:90%"></div>
+                    </div>
+                </div>
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">⚡</span>
+                    <div class="skill-name">Automation & RPA</div>
+                    <div class="skill-tag">Python · JS · Bot Workflows</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:85%"></div>
+                    </div>
+                </div>
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">🤖</span>
+                    <div class="skill-name">Agentic AI</div>
+                    <div class="skill-tag">LangChain · Agents · Pipelines</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:88%"></div>
+                    </div>
+                </div>
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">🔌</span>
+                    <div class="skill-name">MCP Integration</div>
+                    <div class="skill-tag">Model Context Protocol · APIs</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:82%"></div>
+                    </div>
+                </div>
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">🎨</span>
+                    <div class="skill-name">Infographic Design</div>
+                    <div class="skill-tag">Figma · Canva · Data Viz</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:87%"></div>
+                    </div>
+                </div>
+                <div class="glass-card skill-card">
+                    <span class="skill-icon">📈</span>
+                    <div class="skill-name">Data Design</div>
+                    <div class="skill-tag">Dashboards · Charts · Storytelling</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width:89%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-wrap">
+            <h2 class="section-title gradient-text">GitHub Projects</h2>
+            <div class="divider"></div>
+            <p class="section-sub">Real-world projects spanning AI, automation, data science, and beyond.</p>
+            <div class="projects-grid">
+
+                <div class="glass-card proj-card">
+                    <span class="proj-lang">Jupyter Notebook</span>
+                    <div class="proj-title">BlackFriday Pricing Analysis</div>
+                    <div class="proj-desc">Exploratory data analysis on Black Friday sales data — uncovering pricing
+                        patterns, consumer behaviour trends, and purchase predictions using Python &amp; ML techniques.
+                    </div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Python</span>
+                        <span class="proj-tag">Pandas</span>
+                        <span class="proj-tag">EDA</span>
+                        <span class="proj-tag">Data Viz</span>
+                        <span class="proj-tag">Machine Learning</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/abhsksingh/BlackFriday-pricing" target="_blank"
+                            class="proj-link proj-link-primary">View Repo</a>
+                        <a href="https://github.com/abhsksingh/BlackFriday-pricing/blob/main/README.md" target="_blank"
+                            class="proj-link proj-link-ghost">Readme</a>
+                    </div>
+                </div>
+
+                <div class="glass-card proj-card">
+                    <span class="proj-lang">Jupyter Notebook</span>
+                    <div class="proj-title">House Price Predictions</div>
+                    <div class="proj-desc">ML-powered regression model to predict real estate prices based on property
+                        features. Includes feature engineering, model selection, and performance evaluation with visual
+                        insights.</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Python</span>
+                        <span class="proj-tag">Scikit-learn</span>
+                        <span class="proj-tag">Regression</span>
+                        <span class="proj-tag">Feature Eng.</span>
+                        <span class="proj-tag">Matplotlib</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/abhsksingh/House-Price-Predictions" target="_blank"
+                            class="proj-link proj-link-primary">View Repo</a>
+                        <a href="https://github.com/abhsksingh/House-Price-Predictions/blob/main/README.md"
+                            target="_blank" class="proj-link proj-link-ghost">Readme</a>
+                    </div>
+                </div>
+
+                <div class="glass-card proj-card">
+                    <span class="proj-lang js">JavaScript</span>
+                    <div class="proj-title">JobBot – Job Automation</div>
+                    <div class="proj-desc">An intelligent automation bot that streamlines the job application process —
+                        scraping listings, auto-filling forms, and managing applications using JavaScript-powered
+                        automation workflows.</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">JavaScript</span>
+                        <span class="proj-tag">Automation</span>
+                        <span class="proj-tag">Bot</span>
+                        <span class="proj-tag">Web Scraping</span>
+                        <span class="proj-tag">RPA</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/abhsksingh/jobBot" target="_blank"
+                            class="proj-link proj-link-primary">View Repo</a>
+                        <a href="https://github.com/abhsksingh/jobBot/blob/main/README.md" target="_blank"
+                            class="proj-link proj-link-ghost">Readme</a>
+                    </div>
+                </div>
+
+                <div class="glass-card proj-card">
+                    <span class="proj-lang js">JavaScript</span>
+                    <div class="proj-title">Autonotes AI</div>
+                    <div class="proj-desc">An agentic AI-powered note-taking assistant that automatically generates,
+                        organises, and summarises notes from various inputs using LLMs — a showcase of prompt
+                        engineering and agentic pipelines.</div>
+                    <div class="proj-tags">
+                        <span class="proj-tag">JavaScript</span>
+                        <span class="proj-tag">Agentic AI</span>
+                        <span class="proj-tag">LLM</span>
+                        <span class="proj-tag">Prompt Eng.</span>
+                        <span class="proj-tag">Automation</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/abhsksingh/Autonotes-AI" target="_blank"
+                            class="proj-link proj-link-primary">View Repo</a>
+                        <a href="https://github.com/abhsksingh/Autonotes-AI/blob/main/README.md" target="_blank"
+                            class="proj-link proj-link-ghost">Readme</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-wrap">
+            <h2 class="section-title gradient-text">Get In Touch</h2>
+            <div class="divider"></div>
+            <p class="section-sub">Open to collaborations, freelance projects, and full-time opportunities. Let's build
+                something amazing.</p>
+            <div class="contact-grid">
+                <a href="mailto:singhabhishek6206@gmail.com" class="glass-card contact-card">
+                    <div class="contact-icon c-pink-i">✉️</div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">singhabhishek6206@gmail.com</div>
+                    </div>
+                </a>
+                <a href="tel:+916206015383" class="glass-card contact-card">
+                    <div class="contact-icon c-green-i">📞</div>
+                    <div>
+                        <div class="contact-label">Phone</div>
+                        <div class="contact-value">+91 6206 015 383</div>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/abhishek-singh-13b562358" target="_blank"
+                    class="glass-card contact-card">
+                    <div class="contact-icon c-blue-i">💼</div>
+                    <div>
+                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-value">abhishek-singh-13b562358</div>
+                    </div>
+                </a>
+                <a href="https://github.com/abhsksingh" target="_blank" class="glass-card contact-card">
+                    <div class="contact-icon c-purple-i">🐙</div>
+                    <div>
+                        <div class="contact-label">GitHub</div>
+                        <div class="contact-value">github.com/abhsksingh</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Crafted with 💜 by <span>Abhishek Kumar Singh</span> · "Innovate. Implement. Inspire." · © 2026</p>
+    </footer>
+
+</body>
+
+</html>
